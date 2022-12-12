@@ -27,6 +27,7 @@ const TrackPage = () => {
      onSearch("");
    }, []);
  
+   //side menu , search bar
    return (
      <Layout>
        <Sider width={300} className="site-layout-background">

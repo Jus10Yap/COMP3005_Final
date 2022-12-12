@@ -24,6 +24,7 @@ const StorePage = () => {
             })
     }
 
+    //get the book based on req params
     const getBook = (isbn) => {
         axios.get(`/book/${isbn}`).then(function (response) {
     
@@ -32,6 +33,7 @@ const StorePage = () => {
         })
     };
 
+    //get the returned book information
     const getBookInfo = (name) => {
         axios.get(`/search/book?isbn=${name}`)
             .then(function (response) {

@@ -18,6 +18,7 @@ router.get('/order', async(req, res) => {
         )
         res.send(orders)
     } else {
+        //query order number
         const orders = await db.query(
             `SELECT ORDER_INFO.id, ORDER_INFO.expected_ship_date,
             ORDER_INFO.date_of_receipt, ADDRESS_INFO.address_line, 

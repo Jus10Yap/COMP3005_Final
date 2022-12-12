@@ -3,14 +3,16 @@ import axios from "axios";
 import {Redirect} from "react-router-dom";
 import "../css/LoginPage.css"
 
+//login page
 const LoginPage = ({handleLogin}) => {
     const [form] = Form.useForm();
-
+    //IF user exists
     const onFinish = (values) => {
         console.log('Success: ', values);
         login(values.username, values.password);
     }
 
+    //logging in
     const login = (username, password) => { 
         axios.post(`/search/login`, {username, password})
             .then(function (response) {

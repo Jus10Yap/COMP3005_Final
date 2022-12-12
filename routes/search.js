@@ -56,6 +56,7 @@ router.get('/genre', async(req, res) => {
         )
         res.send(genre)
     } else {
+        //query
         const genre = await db.query(
             `SELECT DISTINCT genre 
             FROM BOOK

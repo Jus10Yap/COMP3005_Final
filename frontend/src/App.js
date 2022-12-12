@@ -1,6 +1,6 @@
 import './index.css';
 import {Switch, Route, Redirect} from "react-router-dom";
-
+//imports
 import NavBar from './components/NavBar';
 import HomePage from './views/HomePage';
 import SearchPage from './views/SearchPage';
@@ -13,8 +13,9 @@ import ReportPage from './views/ReportPage';
 
 import { useState, useEffect } from 'react';
 
+//web page application
 function App() {
-
+  //log in handlers
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleLogin = (userID) => {
@@ -37,7 +38,7 @@ function App() {
     }
 
   }, []);
-
+  //nav bar
   return (
     <div className="App">
       <NavBar isLoggedIn={isLoggedIn} handleLogout={handleLogout}/>
