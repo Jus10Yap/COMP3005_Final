@@ -1,5 +1,6 @@
 import { Table } from "antd";
 
+//bookstores tracking table, tracks all orders of bookstore
 // table columns
 const columns = [
   {

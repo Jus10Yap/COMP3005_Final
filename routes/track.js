@@ -2,10 +2,12 @@ const db = require('../SQL/db-init');
 const express = require('express');
 const router = express.Router();
 
+//query order using order number inputted
 router.get('/order', async(req, res) => {
     console.log(`${req.method} for ${req.url}`);
     const name= req.query.id;
     console.log(req.query.id);
+    //if user did not input any order number then show all bookstore orders
     if (name == undefined || name == null || name == "") {
         const orders = await db.query(
             `SELECT ORDER_INFO.id, ORDER_INFO.expected_ship_date,

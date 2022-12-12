@@ -41,11 +41,12 @@ router.get('/book', async(req, res) => {
     }
 });
 
-
+//sidebox data for genere
 router.get('/genre', async(req, res) => {
     console.log(`${req.method} for ${req.url}`);
     const { key } = req.query
 
+    //querying for distinct genres in book
     if (key === undefined || key == null || key == "") {
         const genre = await db.query(
             `SELECT DISTINCT genre
@@ -66,10 +67,12 @@ router.get('/genre', async(req, res) => {
     }
 });
 
+
+//sidebox author data
 router.get('/author', async(req, res) => {
     console.log(`${req.method} for ${req.url}`);
     const { key } = req.query
-
+    //querying for distinct authors in book database
     if (key === undefined || key == null || key == "") {
         const author = await db.query(
             `SELECT DISTINCT author 
@@ -90,12 +93,12 @@ router.get('/author', async(req, res) => {
     }
 });
 
-
+//sidebox publisher 
 router.get('/publisher', async(req, res) => {
     console.log(`${req.method} for ${req.url}`);
     const { key } = req.query
 
-
+    //querying distinct publishers
     if (key === undefined || key == null || key == "") {
         const publisher = await db.query(
             `SELECT DISTINCT publisher_name
@@ -114,7 +117,7 @@ router.get('/publisher', async(req, res) => {
 
 
 
-
+//if user decides to select all three genre, author, publisher(or 1 to 2)
 router.post('/books', async(req, res) => {
     console.log(`${req.method} for ${req.url}`);
     console.log(req.body);
@@ -125,6 +128,7 @@ router.post('/books', async(req, res) => {
 
     let params = [];
 
+    //if none of checkboxes are selected
     if (genres.length == 0 && authors.length == 0 && publishers.length == 0) {
         const books = await db.query(
             `SELECT * 
@@ -135,9 +139,10 @@ router.post('/books', async(req, res) => {
         
         res.send(books)
     } else {
+    
         let sqlQuery = `SELECT * FROM book INNER JOIN publisher
         ON BOOK.publisher_id = PUBLISHER.id WHERE`;
-
+        //user checked genre
         if (genres.length != 0) {
             sqlQuery = sqlQuery + `(`;
             for (let i = 0; i < genres.length; i++) {
@@ -154,7 +159,7 @@ router.post('/books', async(req, res) => {
         if (genres.length > 0 && authors.length > 0) {
             sqlQuery = sqlQuery + ` AND `;
         }
-
+        //user checked author
         if (authors.length != 0) {
             sqlQuery = sqlQuery + `(`;
             for (let i = 0; i < authors.length; i++) {
@@ -171,7 +176,7 @@ router.post('/books', async(req, res) => {
         if (genres.length > 0 && publishers.length > 0 || authors.length > 0 && publishers.length > 0) {
             sqlQuery = sqlQuery + ` AND`;
         }
-
+        //user checked publishers
         if (publishers && publishers.length != 0) {
             sqlQuery = sqlQuery + `(`;
             for (let i = 0; i < publishers.length; i++) {
@@ -195,7 +200,7 @@ router.post('/books', async(req, res) => {
 });
 
 
-
+//posting current owner to server
 router.post('/login', async(req, res) => {
 
     const { username, password } = req.body
@@ -222,6 +227,7 @@ router.post('/login', async(req, res) => {
 
 });
 
+//querying the owner thats logged in info
 router.get('/owner', async(req, res) => {
 
     const { username } = req.query

@@ -1,7 +1,7 @@
 import { Table } from "antd";
+
 //table to be shown when a book is clicked on
 // show the data of the book
-
 // table columns
 const columns = [
   {

@@ -1,5 +1,6 @@
 import { Table } from "antd";
 
+//search table - table of all the books in the bookstore
 // table columns
 const columns = [
   {

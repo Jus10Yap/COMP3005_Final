@@ -1,8 +1,8 @@
 import { Layout, Menu } from 'antd';
 import { Link } from 'react-router-dom';
-
 const { Header } = Layout;
 
+//navigation bar and their paths
 const NavBar = ({isLoggedIn,handleLogout}) => {
     return ( 
         <Layout>

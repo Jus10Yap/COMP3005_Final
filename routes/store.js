@@ -2,6 +2,8 @@ const db = require('../SQL/db-init');
 const express = require('express');
 const router = express.Router();
 
+
+//get the information of the book with the request parameters isbn
 router.get('/:isbn', async (req, res) => {
     console.log(`${req.method} for ${req.url}`);
     console.log("WHAT THE FUCKL");
@@ -10,13 +12,16 @@ router.get('/:isbn', async (req, res) => {
     const book = await db.query(
         `SELECT * 
         FROM BOOK
-        NATURAL JOIN publisher
-        WHERE ISBN LIKE 23452`,
+        LEFT JOIN publisher
+        ON BOOK.publisher_id = PUBLISHER.id
+        WHERE ISBN LIKE (?)`,
         [name]
     )
     res.send(book)
 })
 
+
+//uploading the book's data onto the server
 router.post('/upload', async (req, res) => {
     console.log(req.body)
     
@@ -37,7 +42,7 @@ router.post('/upload', async (req, res) => {
 
     // const newData2 = await db.query(
     //     `INSERT INTO publisher VALUES (?,?,?,?)`,
-    //     [switchID,storeID,1,price]
+    //     []
     // )
    
     res.send({success: true});
