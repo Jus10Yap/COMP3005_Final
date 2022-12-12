@@ -58,7 +58,7 @@ function App() {
         <Route path="/book/:ibsn">
           <StorePage />
         </Route>
-        <Route path="/report/">
+        <Route path="/report">
           <ReportPage />
         </Route>
         <Route path="/checkout">
