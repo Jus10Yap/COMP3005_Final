@@ -2,9 +2,12 @@ const db = require('../SQL/db-init');
 const express = require('express');
 const router = express.Router();
 
+//book title and isbn search bar route
 router.get('/book', async(req, res) => {
     console.log(`${req.method} for ${req.url}`);
     const name= req.query;
+
+    //if user did not input a book title or isbn then return all books
     if (name == undefined || name == null || name == "") {
         const books = await db.query(
             `SELECT *
@@ -13,6 +16,7 @@ router.get('/book', async(req, res) => {
             ON BOOK.publisher_id = PUBLISHER.id`, []
         )
         res.send(books)
+        //else if user did input book title then query the book with that title
     } else if (req.query.title != undefined) {
         const books = await db.query(
             `SELECT * 
@@ -24,6 +28,7 @@ router.get('/book', async(req, res) => {
         
         res.send(books)
     } else {
+        //else if user input isbn then 
         const books = await db.query(
             `SELECT * 
             FROM BOOK

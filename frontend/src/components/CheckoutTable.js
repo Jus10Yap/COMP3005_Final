@@ -1,5 +1,6 @@
 import { Table } from "antd";
 
+//table for user's cart
 // table columns
 const columns = [
   {
