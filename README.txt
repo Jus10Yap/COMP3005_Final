@@ -8,6 +8,23 @@ Where the database is located:
     - ./SQL/insert_values.sql -- create tables
     - ./SQL/data.sql -- populate tables
 
+- IMPORTANT FOLDERS -
+components:
+    - all the table formmating
+
+css:
+    - all css related files
+
+views:
+    - all the different pages of the web app 
+
+routes:
+    - all the post, get handling of the server
+
+SQL: 
+    - all the sql and database related files
+
+- RUN APPLICATION -
 How to run:
 In one terminal:
     - cd /frontend
